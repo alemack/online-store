@@ -1,29 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cart;
 
-use session;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class CartController extends Controller
+class AddToCartController extends Controller
 {
-    public function clear()
-    {
-        // чистка корзины
-        session()->forget('cart');
-
-        return redirect()->route('cart.show')->with('success', 'Корзина была успешно очищена');
-    }
-
-    public function show()
-    {
-        // полчить содержимое корзины из сессии
-        $cart = session()->get('cart', []);
-
-        return view('cart.show', ['cart' => $cart]);
-    }
-
     public function addToCart(Request $request)
     {
 

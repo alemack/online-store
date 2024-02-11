@@ -33,7 +33,13 @@
                                 <h5 class="card-title">{{ $product->name }}</h5>
                                 <p class="card-text">Price: ${{ $product->price }}</p>
                                 {{-- <p class="card-text">Description: {{ $product->description }}</p> --}}
-                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                <form action="{{ route('cart.add') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="number" name="quantity" value="1" min="1"> <!-- Поле для ввода кол-ва-->
+                                    <button type="submit" class="btn btn-primary">Купить</button>
+                                </form>
+                                {{-- <a href="#" class="btn btn-primary">Add to Cart</a> --}}
                             </div>
                         </div>
                     </div>

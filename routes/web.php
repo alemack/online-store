@@ -5,6 +5,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Cart\ShowCartController;
+use App\Http\Controllers\Cart\AddToCartController;
+use App\Http\Controllers\Cart\RemoveFromCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +23,16 @@ use App\Http\Controllers\CategoryController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
-Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+
+// Route::get('cart', [CartController::class, 'show'])->name('cart.show');
+// Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+// Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+// Route::post('/cart/remove/{product_id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+
+Route::prefix('cart')->group(function () {
+    Route::get('/', [ShowCartController::class, 'show'])->name('cart.show');
+    Route::post('/add', [AddToCartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/remove/{productId}', [RemoveFromCartController::class, 'removeFromCart'])->name('cart.remove');
+    Route::post('/cart/clear', [RemoveFromCartController::class, 'clear'])->name('cart.clear');
+});
