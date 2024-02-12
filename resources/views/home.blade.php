@@ -53,7 +53,7 @@
                                 <h5 class="card-title">
                                     <a href="{{ route('product.show', $product->id) }}" class="text-dark">{{ $product->name }}</a>
                                 </h5>
-                                <p>Остаток: {{ $product->remainder }}</p>
+                                <p>В наличии: {{ $product->remainder }}</p>
                                 <form action="{{ route('cart.add') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
