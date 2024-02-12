@@ -14,7 +14,7 @@
         <div class="container mt-4">
             <div class="row">
                 <!-- Включение колонки с категориями товаров -->
-                @include('_categories')
+                @include('_category-filter')
 
 
                 <!-- Содержимое страницы (карточки товаров) -->

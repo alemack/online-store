@@ -28,8 +28,12 @@ use App\Http\Controllers\Cart\RemoveFromCartController;
 // Route::post('/cart/remove/{product_id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
 
+// Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/category/{category}', 'HomeController@category')->name('category'.show);
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/category/{category?}', [HomeController::class, 'category'])->name('category');
+
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
 Route::prefix('cart')->group(function () {
