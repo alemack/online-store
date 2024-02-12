@@ -12,7 +12,9 @@ class HomeController extends Controller
     {
         $selectedCategory = $request->input('category'); // Получаем выбранную категорию
 
-        $cheapProducts = Product::orderBy('price')->limit(10)->get();
+        $cheapProducts = Product::orderBy('price')->paginate(10);
+        // dd($cheapProducts);
+        // $cheapProducts = Product::orderBy('price')->limit(10)->get();
         $categories = Category::all();
 
         return view('home', compact('cheapProducts', 'categories', 'selectedCategory'));
@@ -26,15 +28,32 @@ class HomeController extends Controller
         if ($category) {
             $cheapProducts = Product::whereHas('categories', function ($query) use ($category) {
                 $query->where('name', $category);
-            })->orderBy('price')->limit(10)->get();
+            })->orderBy('price')->paginate(10);
         } else {
-            $cheapProducts = Product::orderBy('price')->limit(10)->get();
+            $cheapProducts = Product::orderBy('price')->paginate(10);
         }
 
         $categories = Category::all();
 
-        return view('home', compact('cheapProducts', 'categories', 'category'));
+        return view('category', compact('cheapProducts', 'categories', 'category'));
     }
+
+    // public function category(Request $request)
+    // {
+    //     $category = $request->input('category');
+
+    //     if ($category) {
+    //         $cheapProducts = Product::whereHas('categories', function ($query) use ($category) {
+    //             $query->where('name', $category);
+    //         })->orderBy('price')->limit(10)->get();
+    //     } else {
+    //         $cheapProducts = Product::orderBy('price')->limit(10)->get();
+    //     }
+
+    //     $categories = Category::all();
+
+    //     return view('home', compact('cheapProducts', 'categories', 'category'));
+    // }
 
 
 
