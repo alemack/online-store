@@ -20,15 +20,17 @@ use App\Http\Controllers\Cart\RemoveFromCartController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
-Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+
 
 // Route::get('cart', [CartController::class, 'show'])->name('cart.show');
 // Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 // Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 // Route::post('/cart/remove/{product_id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
 Route::prefix('cart')->group(function () {
     Route::get('/', [ShowCartController::class, 'show'])->name('cart.show');

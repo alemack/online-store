@@ -16,6 +16,7 @@
                 <!-- Включение колонки с категориями товаров -->
                 @include('_categories')
 
+
                 <!-- Содержимое страницы (карточки товаров) -->
                 <div class="col-md-9">
                     <div class="row">
@@ -38,6 +39,7 @@
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="number" name="quantity" value="1" min="1"> <!-- Поле для ввода кол-ва-->
                                     <button type="submit" class="btn btn-primary">Купить</button>
+                                    <a href="{{ route('product.show', $product->id) }}" class="btn btn-secondary">Посмотреть</a>
                                 </form>
                                 {{-- <a href="#" class="btn btn-primary">Add to Cart</a> --}}
                             </div>
@@ -47,6 +49,9 @@
                 </div>
             </div>
         </div>
+        @include('_footer')
         </div>
+
+
     </body>
 </html>

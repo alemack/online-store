@@ -53,5 +53,7 @@
             </form>
         @endif
     </div>
+
+    @include('_footer')
 </body>
 </html>
