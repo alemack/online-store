@@ -13,10 +13,24 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .item-details {
+            flex-grow: 1;
+        }
+        .item-details h3 {
+            margin-bottom: 5px;
+        }
+        .item-details p {
+            margin: 0;
+            font-weight: bold;
         }
         .btn-container {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: flex-end;
         }
     </style>
 </head>
@@ -30,27 +44,38 @@
         @if (empty($cart))
             <p>Ваша корзина пуста.</p>
         @else
+            @php
+                $totalPrice = 0;
+            @endphp
             @foreach ($cart as $productId => $item)
                 <div class="cart-item">
-                    <h3>{{ $item['name'] }}</h3>
-                    <p>Цена: ${{ $item['price'] }}</p>
-                    <p>Количество: {{ $item['quantity'] }}</p>
+                    <div class="item-details">
+                        <h3><a href="{{ route('product.show', ['product' => $productId]) }}">{{ $item['name'] }}</a></h3>
+                        <p>Цена: <span class="text-success">{{ $item['price'] }} руб</span></p>
+                        <p>Количество: {{ $item['quantity'] }}</p>
+                    </div>
                     <div class="btn-container">
-                        <form action="{{ route('product.show', ['product' => $productId]) }}" method="GET">
-                            <button type="submit" class="btn btn-info">Посмотреть</button>
-                        </form>
-                        {{-- <form action="{{ route('cart.remove', ['product_id' => $productId]) }}" method="POST">
-                            @csrf --}}
+                        <form action="{{ route('cart.remove', ['product_id' => $productId]) }}" method="POST">
+                            @csrf
                             <button type="submit" class="btn btn-danger">Удалить</button>
-                        {{-- </form> --}}
+                        </form>
                     </div>
                 </div>
+                @php
+                    $totalPrice += $item['price'] * $item['quantity'];
+                @endphp
             @endforeach
 
-            <form action="{{ route('cart.clear') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-warning">Очистить корзину</button>
-            </form>
+            <div class="mt-3">
+                <h3>Итоговая сумма покупки: {{ $totalPrice }} руб</h3>
+            </div>
+
+            <div class="mb-3">
+                <form action="{{ route('cart.clear') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-warning">Очистить корзину</button>
+                </form>
+            </div>
         @endif
     </div>
 
