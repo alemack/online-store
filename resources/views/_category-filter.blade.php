@@ -6,7 +6,7 @@
     @foreach ($categories as $cat)
         <button type="submit" name="category" value="{{ $cat->name }}" class="btn btn-outline-primary mr-2">{{ $cat->name }}</button>
     @endforeach
-    <button type="submit" name="category" value="" class="btn btn-outline-primary">Общее</button>
+    {{-- <butto n type="submit" name="category" value="" class="btn btn-outline-primary">Общее</butto> --}}
 </form>
 
 {{-- <form action="{{ route('category') }}" method="GET" class="mt-2">

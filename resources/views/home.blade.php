@@ -37,6 +37,7 @@
             <div class="col-md-9">
                 <!-- Выводим карточки дешевых товаров -->
                 @foreach($cheapProducts as $product)
+
                 <div class="row mb-4">
                     <div class="col-md-3">
                         <!-- Отображаем только первое изображение товара -->
@@ -69,6 +70,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 @endforeach
                 <div class="mt-3">
                     {{ $cheapProducts->links() }}

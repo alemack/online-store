@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         $selectedCategory = $request->input('category'); // Получаем выбранную категорию
 
-        $cheapProducts = Product::orderBy('price')->paginate(10);
+        $cheapProducts =  Product::where('remainder', '>', 0)->orderBy('price')->paginate(10);
         // dd($cheapProducts);
         // $cheapProducts = Product::orderBy('price')->limit(10)->get();
         $categories = Category::all();
@@ -28,9 +28,9 @@ class HomeController extends Controller
         if ($category) {
             $cheapProducts = Product::whereHas('categories', function ($query) use ($category) {
                 $query->where('name', $category);
-            })->orderBy('price')->paginate(10);
+            })->where('remainder', '>', 0)->orderBy('price')->paginate(10);
         } else {
-            $cheapProducts = Product::orderBy('price')->paginate(10);
+            $cheapProducts = Product::where('remainder', '>', 0)->orderBy('price')->paginate(10);
         }
 
         $categories = Category::all();
