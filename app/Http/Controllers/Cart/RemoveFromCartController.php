@@ -9,7 +9,7 @@ class RemoveFromCartController extends Controller
 {
     public function clear()
     {
-        // чистка корзины
+        // Очистить корзину
         session()->forget('cart');
 
         return redirect()->route('cart.show')->with('success', 'Корзина была успешно очищена');

@@ -30,15 +30,13 @@
     </style>
 </head>
 <body>
-    <!-- Включение шапки сайта -->
+    <!-- Шапка -->
     @include('_header')
 
     <div class="container">
         <div>
             <h1 class="product-title">{{ $product->name }}</h1>
         </div>
-
-
         <div class="row">
             <div class="col-md-6">
 
@@ -108,6 +106,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <!-- Подвал -->
     @include('_footer')
 </body>
 </html>

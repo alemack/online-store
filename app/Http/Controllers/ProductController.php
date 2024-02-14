@@ -11,7 +11,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        // под
+        // Загрузить изображения для товара
         $product->load('images');
 
         return view('product.show', compact('product'));

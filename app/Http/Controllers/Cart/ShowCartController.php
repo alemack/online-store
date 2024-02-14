@@ -9,7 +9,7 @@ class ShowCartController extends Controller
 {
     public function show()
     {
-        // полчить содержимое корзины из сессии
+        // Полчить содержимое корзины
         $cart = session()->get('cart', []);
 
         return view('cart.show', ['cart' => $cart]);

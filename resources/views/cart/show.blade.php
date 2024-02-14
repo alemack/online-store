@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Корзина</title>
-    <!-- Подключение стилей Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Переопределение стилей для внешнего вида корзины */
         .cart-item {
             margin-bottom: 20px;
             padding: 10px;
@@ -35,7 +33,7 @@
     </style>
 </head>
 <body>
-    <!-- Включение шапки сайта -->
+    <!-- Шапка -->
     @include('_header')
 
     <div class="container mt-4">
@@ -79,6 +77,7 @@
         @endif
     </div>
 
+    <!-- Подвал -->
     @include('_footer')
 </body>
 </html>

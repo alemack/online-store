@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <!-- Подключение стилей Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .card-price {
@@ -23,24 +22,21 @@
     </style>
 </head>
 <body>
-    <!-- Включение шапки сайта -->
+    <!-- Шапка -->
     @include('_header')
 
     <div class="container-fluid mt-4">
         <div class="row">
-            <!-- Включение колонки с категориями товаров -->
+            <!-- Колонка с категориями товаров -->
             <div class="col-md-3">
                 @include('_category-filter')
             </div>
 
-            <!-- Содержимое страницы (карточки товаров) -->
+            <!-- Карточки товаров -->
             <div class="col-md-9">
-                <!-- Выводим карточки дешевых товаров -->
                 @foreach($cheapProducts as $product)
-
                 <div class="row mb-4">
                     <div class="col-md-3">
-                        <!-- Отображаем только первое изображение товара -->
                         @if ($product->images->isNotEmpty())
                         <img src="{{ asset('images/' . $product->images->first()->image_url) }}" class="card-img-top" alt="Product Image">
                         @else
@@ -70,8 +66,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 @endforeach
                 <div class="mt-3">
                     {{ $cheapProducts->links() }}
@@ -80,6 +74,7 @@
         </div>
     </div>
 
+    <!-- Подвал -->
     @include('_footer')
 </body>
 </html>
